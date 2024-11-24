@@ -54,8 +54,8 @@ public class Response {
                             student.isClassificado() == false) {
 
                         // Adiciona o aluno à sala e diminui a capacidade
-                        System.out.println("Atribuindo aluno: " + student.getId() + "  Capaidade da sala "
-                                + classroom.roomType + ": " + capacityLeft);
+                        // System.out.println("Atribuindo aluno: " + student.getId() + " Capaidade da
+                        // sala " + classroom.roomType + ": " + capacityLeft);
                         csvWriter.append(
                                 student.getId() + "," + student.getName() + "," + student.getTypeTest() + ",");
                         csvWriter.append(classroom.roomType + "," + classroom.timeSpan + "\n");
@@ -63,16 +63,16 @@ public class Response {
                         student.setClassificado(true);
 
                     } else {
-                        System.out.println("Aluno " + student.getId() + " não pode ser atribuído"
-                                + " Capaidade da sala " + classroom.roomType + ": " + capacityLeft);
+                        // System.out.println("Aluno " + student.getId() + " não pode ser atribuído"
+                        // + " Capaidade da sala " + classroom.roomType + ": " + capacityLeft);
                     }
 
                 }
 
             }
 
-            System.out.println("Arquivo CSV gerado com sucesso!");
-            screeningTest();
+            // System.out.println("Arquivo CSV gerado com sucesso!");
+
         } catch (IOException e) {
             System.err.println("Erro ao gerar o arquivo CSV: " + e.getMessage());
         }
@@ -92,77 +92,4 @@ public class Response {
         }
         return "";
     }
-
-    public void screeningTest() {
-        
-        int a = 0, b = 0, c = 0, d = 0;
-        String typeTestA = "Prova A: " + a + " Alunos";
-        String typeTestB = "Prova B: " + b + " Alunos";
-        String typeTestC = "Prova C: " + c + " Alunos";
-        String typeTestD = "Prova D: " + d + " Alunos";
-        String typeTestS = "Sem Prova";
-        String msg = "";
-
-        for (ClassRoom classRoom : classRooms) {
-            if (classRoom.getTimespan().equals("08H")) {
-                for (Student student : students) {
-                    if (student.getTypeTest().equals("Prova A")) {
-                        ++a;
-                    } else if (student.getTypeTest().equals("Prova B")) {
-                        ++b;
-                    } else if (student.getTypeTest().equals("Prova C")) {
-                        ++c;
-                    } else if (student.getTypeTest().equals("Prova D")) {
-                        ++d;
-                    }
-                }
-                msg += "Horário: 08H" + "\n" + typeTestA + "\n" + typeTestB + "\n" + typeTestC + "\n" + typeTestD + "\n"
-                        + typeTestS;
-            } else if (classRoom.getTimespan().equals("10H")) {
-                for (Student student : students) {
-                    if (student.getTypeTest().equals("Prova A")) {
-                        ++a;
-                    } else if (student.getTypeTest().equals("Prova B")) {
-                        ++b;
-                    } else if (student.getTypeTest().equals("Prova C")) {
-                        ++c;
-                    } else if (student.getTypeTest().equals("Prova D")) {
-                        ++d;
-                    }
-                }
-                msg += "Horário: 010H" + "\n" + typeTestA + "\n" + typeTestB + "\n" + typeTestC + "\n" + typeTestD
-                        + "\n" + typeTestS;
-            } else if (classRoom.getTimespan().equals("13H")) {
-                for (Student student : students) {
-                    if (student.getTypeTest().equals("Prova A")) {
-                        ++a;
-                    } else if (student.getTypeTest().equals("Prova B")) {
-                        ++b;
-                    } else if (student.getTypeTest().equals("Prova C")) {
-                        ++c;
-                    } else if (student.getTypeTest().equals("Prova D")) {
-                        ++d;
-                    }
-                }
-                msg += "Horário: 13H" + "\n" + typeTestA + "\n" + typeTestB + "\n" + typeTestC + "\n" + typeTestD + "\n"
-                        + typeTestS;
-            } else if (classRoom.getTimespan().equals("15H")) {
-                for (Student student : students) {
-                    if (student.getTypeTest().equals("Prova A")) {
-                        ++a;
-                    } else if (student.getTypeTest().equals("Prova B")) {
-                        ++b;
-                    } else if (student.getTypeTest().equals("Prova C")) {
-                        ++c;
-                    } else if (student.getTypeTest().equals("Prova D")) {
-                        ++d;
-                    }
-                }
-                msg += "Horário: 15H" + "\n" + typeTestA + "\n" + typeTestB + "\n" + typeTestC + "\n" + typeTestD + "\n"
-                        + typeTestS;
-            }
-        }
-        System.out.println(msg);
-    }
-
 }
