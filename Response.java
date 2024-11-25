@@ -34,7 +34,6 @@ public class Response {
             for (ClassRoom classroom : classRooms) {
                 // Armazena valor da capacidade da sala
                 int capacityLeft = classroom.roomCapacity;
-
                 // entra no array aluno
                 for (Student student : students) {
 
@@ -64,8 +63,6 @@ public class Response {
                         // + " Capaidade da sala " + classroom.roomType + ": " + capacityLeft);
                     }
                 }
-                int i=0;
-                ++i;
             }
             // System.out.println("Arquivo CSV gerado com sucesso!");
         } catch (IOException e) {
