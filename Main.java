@@ -11,7 +11,7 @@ public class Main {
 
         // BufferReader que manipula o CSV com o FileReader que processa Linha por linha
         try (BufferedReader brInscricoes = new BufferedReader(new FileReader(caminhoArquivoInscricoes));
-        BufferedReader brLugares = new BufferedReader(new FileReader(caminhoArquivoLugares))) {
+                BufferedReader brLugares = new BufferedReader(new FileReader(caminhoArquivoLugares))) {
             // variavel vazia que vai guardar cada linha lida pelo loop
             String linha;
             // loop que lê cada linha do arquivo csv
@@ -22,11 +22,11 @@ public class Main {
                 String nome = partes[1];
                 String tipo = partes[2];
                 // add aluno pelo metodo addStudent
-                response.addStudent(new Student(id, nome, tipo, false));
+                response.addStudent(new Student(id, nome, tipo));
 
                 while ((linha = brLugares.readLine()) != null) {
                     // separa as partes pela virgula
-                    String[] partess = linha.split (",");
+                    String[] partess = linha.split(",");
                     String room = partess[0];
                     int capacity = Integer.parseInt(partess[1]);
                     String time = partess[2];
@@ -38,7 +38,7 @@ public class Main {
             e.printStackTrace();
         }
         response.generatingList();
-
+        response.Summary();
 
     }
 }

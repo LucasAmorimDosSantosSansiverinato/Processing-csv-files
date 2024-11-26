@@ -3,8 +3,9 @@ public class Student {
    private String name;
    private String typeTest;
    private boolean classificado;
+   public int semProva;
 
-   public Student(int id, String name, String typeTest, boolean classificado) {
+   public Student(int id, String name, String typeTest) {
       this.id = id;
       this.name = name;
       this.typeTest = typeTest;

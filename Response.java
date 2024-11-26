@@ -27,6 +27,7 @@ public class Response {
 
         // Cria arquivo csv
         try (FileWriter csvWriter = new FileWriter("distribution.csv")) {
+            
             // escreve cabesalho
             csvWriter.append("Cod. Inscrição,Nome,Tipo Prova,Sala,Horário\n");
 
@@ -34,6 +35,7 @@ public class Response {
             for (ClassRoom classroom : classRooms) {
                 // Armazena valor da capacidade da sala
                 int capacityLeft = classroom.roomCapacity;
+
                 // entra no array aluno
                 for (Student student : students) {
 
@@ -42,29 +44,21 @@ public class Response {
                         break;
                     }
                     if ("Sem Prova".equals(student.getTypeTest())) {
-                        System.out.println("Aluno não atribuido por não ter prova");
                         continue;
                     }
                     // valida se a sala cabe os alunos, se o aluno é daquela sala e daquele horario
                     if (capacityLeft > 0 &&
-                            getTimespan(student.getId()).equals(classroom.timeSpan) &&
-                            student.isClassificado() == false) {
+                            getTimespan(student.getId()).equals(classroom.timeSpan) ) {
 
                         // Adiciona o aluno à sala e diminui a capacidade
-                        // System.out.println("Atribuindo aluno: " + student.getId() + " Capaidade da
-                        // sala " + classroom.roomType + ": " + capacityLeft);
                         csvWriter.append(
                                 student.getId() + "," + student.getName() + "," + student.getTypeTest() + ",");
                         csvWriter.append(classroom.roomType + "," + classroom.timeSpan + "\n");
                         capacityLeft--;
-                        student.setClassificado(true);
-                    } else {
-                        // System.out.println("Aluno " + student.getId() + " não pode ser atribuído"
-                        // + " Capaidade da sala " + classroom.roomType + ": " + capacityLeft);
+                       // student.setClassificado(true);
                     }
                 }
             }
-            // System.out.println("Arquivo CSV gerado com sucesso!");
         } catch (IOException e) {
             System.err.println("Erro ao gerar o arquivo CSV: " + e.getMessage());
         }
@@ -83,4 +77,40 @@ public class Response {
         }
         return "";
     }
+
+    public void Summary() {
+
+        for (ClassRoom classroom : classRooms) {
+
+            int provaA = 0;
+            int provaB = 0;
+            int provaC = 0;
+            int provaD = 0;
+            int semProva = 0;
+            int TotalLugares = classroom.getRoomCapacity();
+            int lugaresOcupados = 0;
+
+            for (Student student : students) {
+
+                for (int i = 0; i <= classroom.getRoomCapacity(); i++) {
+                    lugaresOcupados++;
+                }
+                if (getTimespan(student.getId()).equals(classroom.timeSpan)) {
+
+                    if ("Prova A".equals(student.getTypeTest())) {
+                        provaA++;
+                    } else if ("Prova B".equals(student.getTypeTest())) {
+                        provaB++;
+                    } else if ("Prova C".equals(student.getTypeTest())) {
+                        provaC++;
+                    } else {
+                        provaD++;
+                    }
+                }
+            }
+
+        }
+
+    }
+
 }
